@@ -6,13 +6,13 @@ Video Demo
 1. **Sadman Sakib:** (Matriculation Number: 7213446),
 2. **Farhana Binta Shaheed:** (Matriculation Number: 7216429),
 # To see a video demonstration of the project, click here to watch the video.
- -Sadman Sakib Video: https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing
-
+ - Sadman Sakib Video: https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing
+- Farhana Binta Shaheed Video: https://drive.google.com/file/d/1HmPb4ibJ-OcynqIYzDR40xVqd-ZPTEbj/view?usp=sharing
 
 ## Contributors
 - Sadman Sakib: Implemented the core functionality in Main.java, LogManager.java, and EnergySimulator.java.
-- Farhana Binta Shaheed: Implemented regular expression search in LogSearch.java.
-- Istiak Javed: Handled simple string search in LogSearch.java.
+- Farhana Binta Shaheed: Implemented regular expression search.
+- Istiak Javed: Handled simple string search.
 - Ayad Hossain: Managed file reading and displaying log content in LogSearch.java.
 ## Project Structure
 
