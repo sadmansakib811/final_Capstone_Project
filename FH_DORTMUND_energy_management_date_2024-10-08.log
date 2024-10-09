@@ -1,12 +1,12 @@
 Energy Generation:
-Wind Turbine: 602 kWh
-Solar Panel: 471 kWh
-Total Generated: 1073 kWh
+Wind Turbine: 183 kWh
+Solar Panel: 145 kWh
+Total Generated: 328 kWh
 
 Energy Consumption:
-Lighting: 286 kWh
-Heating: 51 kWh
-H-Bahn: 30 kWh
-Total Consumed: 367 kWh
+Lighting: 33 kWh
+Heating: 341 kWh
+H-Bahn: 6 kWh
+Total Consumed: 380 kWh
 
-Energy Balance: 706 kWh
+Energy Balance: -52 kWh
