@@ -6,7 +6,7 @@ Video Demo
 1. **Sadman Sakib:** (Matriculation Number: 7213446),
 2. **Farhana Binta Shaheed:** (Matriculation Number: 7216429),
 3. **Md Azad Hossain:** (Matriculation Number: 7213230),
-3. **Istiyak Javed:** (Matriculation Number: ),
+3. **Md Istiak Javed:** (Matriculation Number: 7221689),
 
 
 
