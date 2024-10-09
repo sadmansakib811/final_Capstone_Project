@@ -2,6 +2,9 @@
 
 This project simulates energy generation and consumption for different energy sources over multiple days. It generates log files with random values representing energy produced by sources like wind turbines and solar panels, and energy consumed by systems such as lighting, heating, and the H-Bahn. The log files can be searched using both simple string search and regular expression search.
 Video Demo
+# Team Members:
+1. **Sadman Sakib:** (Matriculation Number: 7213446),
+2. **Farhana Binta Shaheed:** (Matriculation Number: 7216429),
 # To see a video demonstration of the project, click here to watch the video.
  - https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing
 
