@@ -3,7 +3,7 @@
 This project simulates energy generation and consumption for different energy sources over multiple days. It generates log files with random values representing energy produced by sources like wind turbines and solar panels, and energy consumed by systems such as lighting, heating, and the H-Bahn. The log files can be searched using both simple string search and regular expression search.
 Video Demo
 # To see a video demonstration of the project, click here to watch the video.
- - [![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)](https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing)
+ - [![Demo CountPages alpha](https://media.istockphoto.com/id/1310634705/vector/video-player-template-for-web-or-mobile-apps-blogging.jpg)](https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing)
  - https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing
 
 ## Project Structure
