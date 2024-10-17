@@ -2,7 +2,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Main {
-    private static final String FILENAME_PREFIX = "FH_DORTMUND_energy_management_date_";
+//    private static final String FILENAME_PREFIX = "FH_DORTMUND_energy_management_date_";
 
     public static void main(String[] args) {
         LogManager logManager = new LogManager();
