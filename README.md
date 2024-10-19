@@ -24,16 +24,17 @@ In **HA2**, we've enhanced the application by implementing 4 exception handling 
 ## Test Result Screenshots:
 - Sadman Sakib Test Result Screenshot:
 ![sadman-energysimulatorTest](https://github.com/user-attachments/assets/98131ca4-0429-4a05-8b5f-509fa4863c35)
-![Sadman Sakib Test result screenshot 2](https://drive.google.com/uc?export=view&id=1pXbgSPXdikSzNwVckFpLl-sitqWt4Oj-/view?usp=sharing)
+![sadman-logManagerTest (1)](https://github.com/user-attachments/assets/cbe05df3-4cc3-4070-b59a-2d8a718e88e2)
+
 
 - Farhana Binta Shaheed test result Screenshot:
-![Farhana Binta Shaheed Test result screenshot](https://drive.google.com/uc?export=view&id=1df0X3RO5N9r1FVww6x0eNKba4WAf03mq/view?usp=sharing)
+![farhana-FileReaderUtilTest](https://github.com/user-attachments/assets/b806c78f-ed32-4b4d-864e-4fbd3c4e604c)
 
 - Md. Azad Hossain test result Screenshot:
-![Azad Hossain Test result screenshot](https://drive.google.com/uc?export=view&id=1OrrKooH3qF6pSc1vMRoxzJn-lnBKhgVr/view?usp=sharing)
+![Azad Regex test](https://github.com/user-attachments/assets/c331379b-b950-4f33-acbb-e2bf26ffa459)
 
 - Istiak Javed Test Result Screenshot:
-![Azad Hossain Test result screenshot](https://drive.google.com/uc?export=view&id=12jZvxPh9y0BIKNub2MxmVJkDRqRjdu7V/view?usp=sharing)
+![Istiyak simple search test](https://github.com/user-attachments/assets/5c0db6ac-a61a-44ce-abab-c993ce81842f)
 ## Project Structure
 
 - **`Main.java`**: 
