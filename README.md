@@ -1,7 +1,10 @@
 # Energy Management Log Simulation
 
 This project simulates energy generation and consumption for different energy sources over multiple days. It generates log files with random values representing energy produced by sources like wind turbines and solar panels, and energy consumed by systems such as lighting, heating, and the H-Bahn. The log files can be searched using both simple string search and regular expression search.
-Video Demo
+
+In **HA2**, we've enhanced the application by implementing 4 exception handling code as per the HA2 pdf and add 5 unit tests for each classes.
+
+
 # Team Members:
 1. **Sadman Sakib:** (Matriculation Number: 7213446),
 2. **Farhana Binta Shaheed:** (Matriculation Number: 7216429),
@@ -11,31 +14,43 @@ Video Demo
 
 
 # To see a video demonstration of the project, click here to watch the video.
- - Sadman Sakib Video: https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing
-- Farhana Binta Shaheed Video: https://drive.google.com/file/d/1HmPb4ibJ-OcynqIYzDR40xVqd-ZPTEbj/view?usp=sharing
+ - Ha2 Explaination Team Video: https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing
 
 ## Contributors
-- Sadman Sakib: Implemented the core functionality in Main.java, LogManager.java, and EnergySimulator.java.
-- Farhana Binta Shaheed: Implemented regular expression search.
-- Istiak Javed: Handled simple string search.
-- Ayad Hossain: Managed file reading and displaying log content in LogSearch.java.
+- Sadman Sakib: In HA2 I have Implemented 4 Exception Handler in the Exception Handler class, And Created Test Suit for testing all the classes together and created 5+5 total 10 test cases for LogManagerTest.java and EnergySimulatorTest.java
+- Farhana Binta Shaheed: I have Implemented 4 Exception Handler as per HA2 in the  FileReaderUtil search class and also add 5 Unit testing in FileReaderUtilTest.java class.
+- Istiak Javed: Handled the 4 Eceptions in my simple string search class and add Unit Testing for SimpleStringSearchTest.java file.
+- Azad Hossain: Add 5 Unit Testing in RegexSearchTest.java.
 ## Project Structure
 
 - **`Main.java`**: 
-  - Manages the flow of the program.
-  - Calls the log generation process and handles user input for searching the log files.
+   - Manages the flow of the program.
+  - Calls the log generation process, handles user input for searching the log files, and integrates exception handling demonstrations.
   - Prompts the user to select between simple string search or regular expression search to find specific terms in the log files.
+  - Includes options for the user to delete or move log files after processing.
+
+- **`ExceptionHandler.java`**:
+  - Demonstrates various exception handling techniques:
+    - Handling multiple exceptions.
+    - Resource management using try-with-resources.
+    - Exception chaining.
+    - Re-throwing exceptions.
+  - Processes log files and showcases how exceptions are handled in different scenarios.
 
 - **`LogManager.java`**:
   - Responsible for generating 5 days of log files, with each log file containing:
     - Energy generation data from wind turbines and solar panels.
     - Energy consumption data for lighting, heating, and the H-Bahn.
     - The balance between total generated and consumed energy.
+  - Implements exception handling for file operations, including re-throwing exceptions to the calling method.
   - The generated files are saved with the format: `FH_DORTMUND_energy_management_date_YYYY-MM-DD.log`.
 
+
 - **`EnergySimulator.java`**:
-  - Simulates random energy data for various sources and consumption points.
-  - It has methods like `simulateWindTurbine()` and `simulateLighting()` that generate random values for energy generation and consumption.
+    - Simulates random energy data for various sources and consumption points.
+  - Methods like `simulateWindTurbine()` and `simulateLighting()` generate random values for energy generation and consumption.
+  - Includes methods to simulate data exchange using both character and byte streams.
+  - Implements exception handling for I/O operations, ensuring resources are properly managed.
 
 - **`LogSearch.java`**:
   - Handles the search functionality for the generated log files.
@@ -43,19 +58,59 @@ Video Demo
     1. **Simple String Search**: Case-insensitive search for specific terms (like "Lighting" or "Heating") in the log files.
     2. **Regular Expression Search**: Allows searching using regular expressions (e.g., find all energy values using `\d+ kWh`).
 
+- **`FileReaderUtil.java`**:
+  - Reads and displays the content of log files.
+  - Shows metadata of log files, such as creation date, last modified date, and file size.
+  - Implements exception handling for file reading operations, including handling multiple exceptions and re-throwing them.
+  - Utilizes try-with-resources for efficient resource management.
+  - **`LogSearch.java`**:
+  - Handles the search functionality for the generated log files.
+  - Offers two types of searches:
+    1. **Simple String Search**: Case-insensitive search for specific terms (like "Lighting" or "Heating") in the log files.
+    2. **Regular Expression Search**: Allows searching using regular expressions (e.g., find all energy values using `\d+ kWh`).
+  - Integrates exception handling when reading files and performing searches.
+
+- **Test Classes**:
+  - **`LogManagerTest.java`**:
+    - Contains unit tests for the `LogManager` class, verifying file creation, content, and exception handling.
+  - **`EnergySimulatorTest.java`**:
+    - Contains unit tests for the `EnergySimulator` class, ensuring simulated values are within expected ranges.
+  - **`FileReaderUtilTest.java`**:
+    - Contains unit tests for the `FileReaderUtil` class, testing exception handling when reading files under various scenarios.
+
+## Exception Handling Enhancements (HA2)
+
+In this assignment, we've focused on implementing comprehensive exception handling throughout the application:
+
+- **Handling Multiple Exceptions**: Specific catch blocks are used to handle different types of exceptions, providing detailed error messages.
+- **Re-throwing Exceptions**: Exceptions are re-thrown to allow higher-level methods to handle them appropriately.
+- **Resource Management**: Try-with-resources statements are used to ensure that all resources (like file readers and writers) are automatically closed after use, preventing resource leaks.
+- **Exception Chaining**: When re-throwing exceptions, the original exception is passed along to preserve the stack trace and original cause.
+
+These enhancements improve the robustness and reliability of the application, making it more resilient to unexpected conditions.
+
 ## How to Use the Program
 
 1. **Run the Program**:
    - When the program starts, it generates 5 days of log files. These files contain random energy generation and consumption data.
-   
-2. **Select a Log File**:
-   - The program lists the available log files. You can choose a log file by entering the corresponding number.
+   - Exception handling demonstrations are run, showcasing how the application handles various exceptions.
 
-3. **Search the Log File**:
+2. **Select a Log File**:
+   - The program lists the available log files. You can choose a log file by entering the equipment name or date.
+
+3. **View Metadata (Optional)**:
+   - You have the option to view metadata of the selected log file, such as creation date, last modified date, and file size.
+
+4. **Search the Log File**:
    - After selecting the log file, you can choose to search using:
      - **Simple String Search** (e.g., searching for "Heating").
      - **Regular Expression Search** (e.g., searching for `\d+ kWh` to find energy values).
    - The program will display matching lines from the log file.
+
+5. **Delete or Move Log Files (Optional)**:
+   - At the end of the program, you are given the option to delete or move log files:
+     - **Delete a Log File**: Remove a specific log file from the directory.
+     - **Move a Log File**: Move a log file to a different directory.
 
 ## Example Output
 
@@ -78,12 +133,22 @@ Video Demo
 
 - Simple String Search
 - Regular Expression Search
-- Enter your search term or regular expression: \d+ kWh
 
-Match found: Wind Turbine: 369 kWh Match found: Solar Panel: 95 kWh Match found: Lighting: 157 kWh Match found: Heating: 122 kWh Match found: H-Bahn: 9 kWh Match found: Total Consumed: 288 kWh Match found: Energy Balance: 176 kWh
+- Enter your choice (1-2): 2
 
-bash
-Copy code
+- Enter the search term or regular expression: \d+ kWh
+
+- Match found: Wind Turbine: 369 kWh Match found: Solar Panel: 95 kWh Match found: Total Generated: 464 kWh Match found: Lighting: 157 kWh Match found: Heating: 122 kWh Match found: H-Bahn: 9 kWh Match found: Total Consumed: 288 kWh Match found: Energy Balance: 176 kWh
+
+- Do you want to delete or move a log file?
+
+- 1 Delete a log file
+- 2 Move a log file
+- Close the code
+Exit Enter your choice (1-3): 1
+Enter the name of the log file you want to delete: FH_DORTMUND_energy_management_date_2024-10-16.log Log file deleted: FH_DORTMUND_energy_management_date_2024-10-16.log
+
+
 
 ## How to Run
 
