@@ -14,13 +14,26 @@ In **HA2**, we've enhanced the application by implementing 4 exception handling 
 
 
 # To see a video demonstration of the project, click here to watch the video.
- - Ha2 Explaination Team Video: https://drive.google.com/file/d/1v0NHGPxLZAyZTUaV7oAmSZYPv4dz1gxT/view?usp=sharing
+ - Ha2 Explaination Team Video: https://www.youtube.com/watch?v=vcpvKBGdx7Q
 
 ## Contributors
 - Sadman Sakib: In HA2 I have Implemented 4 Exception Handler in the Exception Handler class, And Created Test Suit for testing all the classes together and created 5+5 total 10 test cases for LogManagerTest.java and EnergySimulatorTest.java
 - Farhana Binta Shaheed: I have Implemented 4 Exception Handler as per HA2 in the  FileReaderUtil search class and also add 5 Unit testing in FileReaderUtilTest.java class.
 - Istiak Javed: Handled the 4 Eceptions in my simple string search class and add Unit Testing for SimpleStringSearchTest.java file.
 - Azad Hossain: Add 5 Unit Testing in RegexSearchTest.java.
+## Test Result Screenshots:
+- Sadman Sakib Test Result Screenshot:
+![Sadman Sakib Test result screenshot 1](https://drive.google.com/file/d/1gC8VrOAoufMPF_kdH2KANHgEycOHPtf5/view?usp=sharing)
+![Sadman Sakib Test result screenshot 2](https://drive.google.com/file/d/1pXbgSPXdikSzNwVckFpLl-sitqWt4Oj-/view?usp=sharing)
+
+- Farhana Binta Shaheed test result Screenshot:
+![Farhana Binta Shaheed Test result screenshot](https://drive.google.com/file/d/1df0X3RO5N9r1FVww6x0eNKba4WAf03mq/view?usp=sharing)
+
+- Md. Azad Hossain test result Screenshot:
+![Azad Hossain Test result screenshot](https://drive.google.com/file/d/1OrrKooH3qF6pSc1vMRoxzJn-lnBKhgVr/view?usp=sharing)
+
+- Istiak Javed Test Result Screenshot:
+![Azad Hossain Test result screenshot](https://drive.google.com/file/d/12jZvxPh9y0BIKNub2MxmVJkDRqRjdu7V/view?usp=sharing)
 ## Project Structure
 
 - **`Main.java`**: 
