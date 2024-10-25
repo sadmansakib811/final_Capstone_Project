@@ -3,13 +3,14 @@ package tests;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.regex.PatternSyntaxException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import energymanagement.RegexSearch;
 
 public class RegexSearchTest {
+	
+//	checking whether the test file exist or not.
 
     @Test
     public void testSearchLog_ValidRegex_MatchFound() throws IOException {
@@ -51,6 +52,8 @@ public class RegexSearchTest {
         }
         System.out.println("**********************************");
     }
+
+    
 
     @Test
     public void testSearchLog_FileDoesNotExist() {

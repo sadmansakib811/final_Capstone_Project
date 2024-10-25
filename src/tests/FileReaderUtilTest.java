@@ -1,5 +1,7 @@
 package tests;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 import energymanagement.FileReaderUtil;
 import java.io.File;
 import java.io.FileWriter;
@@ -43,7 +45,7 @@ public class FileReaderUtilTest {
             util.showLogFileContent(testFile);
         });
         System.out.println("Test passed: testShowLogFileContent_FileDoesNotExist");
-        System.out.println("********************************");
+        System.out.println("**********************************");
     }
 
     @Test
