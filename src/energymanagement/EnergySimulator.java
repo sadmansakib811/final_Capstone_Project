@@ -79,6 +79,10 @@ public class EnergySimulator {
         // Start the threads
         windTurbineThread.start();
         solarPanelThread.start();
+        lightingThread.start();
+        heatingThread.start();
+        hbahnThread.start();
+        carChargingThread.start();
         
     }
 
