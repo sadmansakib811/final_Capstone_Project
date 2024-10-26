@@ -12,45 +12,50 @@ public class Main {
         LogSearch logSearch = new LogSearch();
         FileReaderUtil fileReaderUtil = new FileReaderUtil();  // For metadata
         ExceptionHandler exceptionHandler = new ExceptionHandler(); // ExceptionHandler instance
+        EnergySimulator energySimulator = new EnergySimulator();
         Scanner scanner = new Scanner(System.in);
+        Battery battery = new Battery(5000);
 
         try {
-           
+            // Start the multithreaded simulation
+            energySimulator.startSimulation(battery);
+            Thread.sleep(10000); // Let the simulation run for 10 seconds
+
+            // Stop the simulation
+            energySimulator.stopSimulation();
+
+            System.out.println("\nSimulation complete. Current battery charge: " + battery.getCurrentCharge());
+
+            // Proceed with other functionalities
             System.out.println("Generating 5 days of log files...");
             logManager.generateLogFiles();
 
             exceptionHandler.handleMultipleExceptions();
             exceptionHandler.manageResource();
             exceptionHandler.chainException();
-            
-   
+
             File[] logFiles = showAvailableLogFiles();
             if (logFiles == null || logFiles.length == 0) {
                 System.out.println("No log files found.");
                 return;
             }
 
-       
             File selectedFile = selectLogFileByCriteria(scanner, logFiles);
 
             if (selectedFile != null) {
                 System.out.println("Selected log file: " + selectedFile.getName());
 
-           
-                System.out.println("Do you want to view metadata for this file? (yes/no): ");
+                System.out.print("Do you want to view metadata for this file? (yes/no): ");
                 String viewMetadata = scanner.nextLine();
                 if (viewMetadata.equalsIgnoreCase("yes")) {
                     fileReaderUtil.showMetadata(selectedFile);
                 }
 
-                
                 logSearch.showLogFileContent(selectedFile);
 
-               
                 logSearch.performSearch(selectedFile, scanner);
             }
 
-           
             System.out.println("\nDo you want to delete or move a log file?");
             System.out.println("1. Delete a log file");
             System.out.println("2. Move a log file");
@@ -58,36 +63,33 @@ public class Main {
             System.out.print("Enter your choice (1-3): ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    
                     deleteLogFile(scanner, logFiles);
                     break;
                 case 2:
-                   
                     moveLogFile(scanner, logFiles);
                     break;
                 case 3:
-                 
                     System.out.println("Exiting the program.");
                     break;
                 default:
                     System.out.println("Invalid choice. Exiting.");
                     break;
             }
-          
 
         } catch (IOException e) {
             System.out.println("An error occurred: " + e.getMessage());
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         } finally {
-            scanner.close(); 
+            scanner.close();
         }
     }
 
-    
     private static File[] showAvailableLogFiles() {
         File dir = new File(".");
         System.out.println("Looking for log files in directory: " + dir.getAbsolutePath());
@@ -106,14 +108,13 @@ public class Main {
         return logFiles;
     }
 
-    
     private static File selectLogFileByCriteria(Scanner scanner, File[] logFiles) {
         System.out.print("Enter the equipment name or date (YYYY-MM-DD) to open a log file: ");
         String searchCriteria = scanner.nextLine();
 
         for (File logFile : logFiles) {
             if (logFile.getName().contains(searchCriteria)) {
-                return logFile;  
+                return logFile;
             }
         }
 
@@ -121,14 +122,10 @@ public class Main {
         return null;
     }
 
-    
     private static void deleteLogFile(Scanner scanner, File[] logFiles) {
-        System.out.println("\nEnter the name of the log file you want to delete:");
+        System.out.print("\nEnter the name of the log file you want to delete: ");
         String fileName = scanner.nextLine();
 
-        
-      
-        
         File fileToDelete = null;
         for (File file : logFiles) {
             if (file.getName().equals(fileName)) {
@@ -148,9 +145,8 @@ public class Main {
         }
     }
 
-   
     private static void moveLogFile(Scanner scanner, File[] logFiles) {
-        System.out.println("\nEnter the name of the log file you want to move:");
+        System.out.print("\nEnter the name of the log file you want to move: ");
         String fileName = scanner.nextLine();
 
         File fileToMove = null;
@@ -167,7 +163,7 @@ public class Main {
             File destDir = new File(destinationDir);
 
             if (!destDir.exists()) {
-                System.out.println("Destination directory does not exist. Do you want to create it? (yes/no): ");
+                System.out.print("Destination directory does not exist. Do you want to create it? (yes/no): ");
                 String createDir = scanner.nextLine();
                 if (createDir.equalsIgnoreCase("yes")) {
                     if (!destDir.mkdirs()) {
