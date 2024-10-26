@@ -67,6 +67,12 @@ public class EnergySimulator {
         // Create threads for energy sources (charging)
         windTurbineThread = new Thread(new EnergySource(battery, "Wind Turbine"));
         solarPanelThread = new Thread(new EnergySource(battery, "Solar Panel"));
+        
+     // Create threads for energy consumers (discharging)
+        lightingThread = new Thread(new EnergyConsumer(battery, "Lighting"));
+        heatingThread = new Thread(new EnergyConsumer(battery, "Heating"));
+        hbahnThread = new Thread(new EnergyConsumer(battery, "H-Bahn"));
+        carChargingThread = new Thread(new EnergyConsumer(battery, "Car Charging Station"));
 
         
 
