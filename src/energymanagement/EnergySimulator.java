@@ -133,41 +133,5 @@ public class EnergySimulator {
         }
     }
 
-    // Inner class for energy consumers
-    class EnergyConsumer implements Runnable {
-        private Battery battery;
-        private String consumerName;
-
-        public EnergyConsumer(Battery battery, String consumerName) {
-            this.battery = battery;
-            this.consumerName = consumerName;
-        }
-
-        @Override
-        public void run() {
-            while (simulationRunning.get()) {
-                int amount = 0;
-                switch (consumerName) {
-                    case "Lighting":
-                        amount = simulateLighting();
-                        break;
-                    case "Heating":
-                        amount = simulateHeating();
-                        break;
-                    case "H-Bahn":
-                        amount = simulateHBahn();
-                        break;
-                    case "Car Charging Station":
-                        amount = simulateCarCharging();
-                        break;
-                }
-                battery.discharge(amount, consumerName);
-                try {
-                    Thread.sleep(1000); // Wait before next consumption
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        }
-    }
+ 
 }
