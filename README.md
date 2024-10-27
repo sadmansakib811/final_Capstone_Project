@@ -2,7 +2,7 @@
 
 This project simulates energy generation and consumption for different energy sources over multiple days. It generates log files with random values representing energy produced by sources like wind turbines and solar panels, and energy consumed by systems such as lighting, heating, and the H-Bahn. The log files can be searched using both simple string search and regular expression search.
 
-In **HA2**, we've enhanced the application by implementing 4 exception handling code as per the HA2 pdf and add 5 unit tests for each classes.
+In **HA3**, we've enhanced the application by implementing Battery Class and add Concurrency. We have added Simulate multithread charging of the reserved batteries from several energy sources and added Simulate multithread of the usage several energy objects from the battery. Control overload of the system.
 
 
 # Team Members:
@@ -14,29 +14,18 @@ In **HA2**, we've enhanced the application by implementing 4 exception handling 
 
 
 # To see a video demonstration of the project, click here to watch the video.
- - Ha2 Explaination Team Video: https://www.youtube.com/watch?v=vcpvKBGdx7Q
+ - Ha3 Explaination Team Video: https://www.youtube.com/watch?v=vcpvKBGdx7Q
 
 ## Contributors
-- Sadman Sakib: In HA2 I have Implemented 4 Exception Handler in the Exception Handler class, And Created Test Suit for testing all the classes together and created 5+5 total 10 test cases for LogManagerTest.java and EnergySimulatorTest.java
-- Farhana Binta Shaheed: I have Implemented 4 Exception Handler as per HA2 in the  FileReaderUtil search class and also add 5 Unit testing in FileReaderUtilTest.java class.
-- Istiak Javed: Handled the 4 Eceptions in my simple string search class and add Unit Testing for SimpleStringSearchTest.java file.
-- Azad Hossain: Add 5 Unit Testing in RegexSearchTest.java.
-## Test Result Screenshots:
-- Sadman Sakib Test Result Screenshot:
-![sadman-energysimulatorTest](https://github.com/user-attachments/assets/98131ca4-0429-4a05-8b5f-509fa4863c35)
-![sadman-logManagerTest (1)](https://github.com/user-attachments/assets/cbe05df3-4cc3-4070-b59a-2d8a718e88e2)
+- Sadman Sakib: In HA3 I have Implemented the multi thread for the energy source like windTurbineThread and solarPanelThread. Simulated multithread charging of the reserved batteries from several energy sources
+- Farhana Binta Shaheed: In HA3 I have Implemented Simulation of multithread of the usage several energy objects from the battery. Control overload of the system.
+- Azad Hossain: Add Tweaks in Main java file for the proper new fetures running.
 
-
-- Farhana Binta Shaheed test result Screenshot:
-![farhana-FileReaderUtilTest](https://github.com/user-attachments/assets/b806c78f-ed32-4b4d-864e-4fbd3c4e604c)
-
-- Md. Azad Hossain test result Screenshot:
-![Azad Regex test](https://github.com/user-attachments/assets/c331379b-b950-4f33-acbb-e2bf26ffa459)
-
-- Istiak Javed Test Result Screenshot:
-![Istiyak simple search test](https://github.com/user-attachments/assets/5c0db6ac-a61a-44ce-abab-c993ce81842f)
 ## Project Structure
-
+- **`Battery.java`**: 
+- Newly Added for HA3
+-Simulate multithread charging of the reserved batteries from several energy sources.
+- Simulate multithread of the usage several energy objects from the battery. Control overload of the system.
 - **`Main.java`**: 
    - Manages the flow of the program.
   - Calls the log generation process, handles user input for searching the log files, and integrates exception handling demonstrations.
@@ -65,6 +54,8 @@ In **HA2**, we've enhanced the application by implementing 4 exception handling 
   - Methods like `simulateWindTurbine()` and `simulateLighting()` generate random values for energy generation and consumption.
   - Includes methods to simulate data exchange using both character and byte streams.
   - Implements exception handling for I/O operations, ensuring resources are properly managed.
+  - Simulate multithread charging of the reserved batteries from several energy sources.
+  - Simulate multithread of the usage several energy objects from the battery. Control overload of the system.
 
 - **`LogSearch.java`**:
   - Handles the search functionality for the generated log files.
