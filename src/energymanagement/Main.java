@@ -10,23 +10,21 @@ public class Main {
     public static void main(String[] args) {
         LogManager logManager = new LogManager();
         LogSearch logSearch = new LogSearch();
-        FileReaderUtil fileReaderUtil = new FileReaderUtil();  // For metadata
-        ExceptionHandler exceptionHandler = new ExceptionHandler(); // ExceptionHandler instance
+        FileReaderUtil fileReaderUtil = new FileReaderUtil();
+        ExceptionHandler exceptionHandler = new ExceptionHandler();
         EnergySimulator energySimulator = new EnergySimulator();
         Scanner scanner = new Scanner(System.in);
         Battery battery = new Battery(5000);
 
         try {
-            // Start the multithreaded simulation
-            energySimulator.startSimulation(battery);
-            Thread.sleep(10000); // Let the simulation run for 10 seconds
 
-            // Stop the simulation
+            energySimulator.startSimulation(battery);
+            Thread.sleep(10000);
+
             energySimulator.stopSimulation();
 
             System.out.println("\nSimulation complete. Current battery charge: " + battery.getCurrentCharge());
 
-            // Proceed with other functionalities
             System.out.println("Generating 5 days of log files...");
             logManager.generateLogFiles();
 
