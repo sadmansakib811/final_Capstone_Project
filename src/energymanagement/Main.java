@@ -13,13 +13,13 @@ public class Main {
         FileReaderUtil fileReaderUtil = new FileReaderUtil();
         ExceptionHandler exceptionHandler = new ExceptionHandler();
         EnergySimulator energySimulator = new EnergySimulator();
-        Scanner scanner = new Scanner(System.in);
         Battery battery = new Battery(5000);
+        Scanner scanner = new Scanner(System.in);
 
         try {
 
             energySimulator.startSimulation(battery);
-            Thread.sleep(10000);
+            Thread.sleep(15000);
 
             energySimulator.stopSimulation();
 
