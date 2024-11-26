@@ -1,97 +1,90 @@
 package energymanagement;
 
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
-
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 public class EnergySimulator {
     private Random random = new Random();
     private AtomicBoolean simulationRunning = new AtomicBoolean(true);
+    private static final String PROPERTIES_FILE_PATH = "initial_settings.properties";
+    // Declare shared variables as volatile
+    private volatile int maxLightingConsumption;
+    private volatile int maxHeatingConsumption;
+    private volatile int maxHBahnConsumption;
+    private volatile int maxCarChargingConsumption;
+    
 
-    // Instance variables for threads
-    private Thread windTurbineThread;
-    private Thread solarPanelThread;
+    // Variables to track last consumption amounts
+    private volatile int lastLightingConsumption = 0;
+    private volatile int lastHeatingConsumption = 0;
+    private volatile int lastHBahnConsumption = 0;
+    private volatile int lastCarChargingConsumption = 0;
+
+   
+
+
     private Thread lightingThread;
     private Thread heatingThread;
     private Thread hbahnThread;
     private Thread carChargingThread;
 
-    // Simulate wind turbine-energy maker
-    public int simulateWindTurbine() {
-        return random.nextInt(1000);
-    }
 
-    // Simulate solar panel-energy maker
-    public int simulateSolarPanel() {
-        return random.nextInt(800);
-    }
+  
+   
+    // Setter methods for adjusting parameters
+    public void setMaxLightingConsumption(int max) { this.maxLightingConsumption = max; }
+    public void setMaxHeatingConsumption(int max) { this.maxHeatingConsumption = max; }
+    public void setMaxHBahnConsumption(int max) { this.maxHBahnConsumption = max; }
+    public void setMaxCarChargingConsumption(int max) { this.maxCarChargingConsumption = max; }
+    
 
-    // Simulate energy consumption for lighting
-    public int simulateLighting() {
-        return random.nextInt(300);
-    }
+    // **Added Getter methods for max values**
+    public int getMaxLightingConsumption() { return maxLightingConsumption; }
+    public int getMaxHeatingConsumption() { return maxHeatingConsumption; }
+    public int getMaxHBahnConsumption() { return maxHBahnConsumption; }
+    public int getMaxCarChargingConsumption() { return maxCarChargingConsumption; }
+    
 
-    // Simulate energy consumption for heating
-    public int simulateHeating() {
-        return random.nextInt(400);
-    }
+    // Getter methods for consumption
+    public int getLastLightingConsumption() { return lastLightingConsumption; }
+    public int getLastHeatingConsumption() { return lastHeatingConsumption; }
+    public int getLastHBahnConsumption() { return lastHBahnConsumption; }
+    public int getLastCarChargingConsumption() { return lastCarChargingConsumption; }
 
-    // Simulate energy consumption for H-Bahn
-    public int simulateHBahn() {
-        return random.nextInt(200);
-    }
+   
 
-    // Simulate energy consumption for car charging station
-    public int simulateCarCharging() {
-        return random.nextInt(500);
-    }
+    // Simulation methods
+   
+    public int simulateLighting() { return random.nextInt(maxLightingConsumption / 2) + 1; }
+    public int simulateHeating() { return random.nextInt(maxHeatingConsumption / 2) + 1; }
+    public int simulateHBahn() { return random.nextInt(maxHBahnConsumption / 2) + 1; }
+    public int simulateCarCharging() { return random.nextInt(maxCarChargingConsumption / 2) + 1; }
 
-    // Simulate data exchange using byte and character streams
-    public void simulateDataExchange(String fileName) throws IOException {
-        // Use character stream to write log data
-        try (FileWriter writer = new FileWriter(fileName, true)) {
-            writer.write("Simulating energy data exchange using character streams...\n");
-        }
-
-        // Use byte stream to simulate byte-level data exchange
-        try (FileOutputStream fos = new FileOutputStream(fileName, true)) {
-            String byteData = "Simulating energy data exchange using byte streams...\n";
-            fos.write(byteData.getBytes());
-        }
-    }
-
-    // Start the multithreaded simulation
+    // Start the simulation
     public void startSimulation(Battery battery) {
-        // Create threads for energy sources (charging)
-        windTurbineThread = new Thread(new EnergySource(battery, "Wind Turbine"));
-        solarPanelThread = new Thread(new EnergySource(battery, "Solar Panel"));
+        simulationRunning.set(true);
+
         
-     // Create threads for energy consumers (discharging)
+
         lightingThread = new Thread(new EnergyConsumer(battery, "Lighting"));
         heatingThread = new Thread(new EnergyConsumer(battery, "Heating"));
         hbahnThread = new Thread(new EnergyConsumer(battery, "H-Bahn"));
         carChargingThread = new Thread(new EnergyConsumer(battery, "Car Charging Station"));
 
-        
-
-        // Start the threads
-        windTurbineThread.start();
-        solarPanelThread.start();
+      
         lightingThread.start();
         heatingThread.start();
         hbahnThread.start();
         carChargingThread.start();
-        
     }
 
     // Stop the simulation
     public void stopSimulation() {
         simulationRunning.set(false);
         try {
-            windTurbineThread.join();
-            solarPanelThread.join();
+          
             lightingThread.join();
             heatingThread.join();
             hbahnThread.join();
@@ -101,39 +94,12 @@ public class EnergySimulator {
         }
     }
 
-    // Inner class for energy sources
-    class EnergySource implements Runnable {
-        private Battery battery;
-        private String sourceName;
+   
 
-        public EnergySource(Battery battery, String sourceName) {
-            this.battery = battery;
-            this.sourceName = sourceName;
-        }
 
-        @Override
-        public void run() {
-            while (simulationRunning.get()) {
-                int amount = 0;
-                switch (sourceName) {
-                    case "Wind Turbine":
-                        amount = simulateWindTurbine();
-                        break;
-                    case "Solar Panel":
-                        amount = simulateSolarPanel();
-                        break;
-                }
-                battery.charge(amount, sourceName);
-                try {
-                    Thread.sleep(1000); // Wait before next charge
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        }
-    }
 
-    // Inner class for energy consumers
+
+    // Inner class for energy consumers By Farhana
     class EnergyConsumer implements Runnable {
         private Battery battery;
         private String consumerName;
@@ -144,26 +110,34 @@ public class EnergySimulator {
         }
 
         @Override
+
         public void run() {
+
             while (simulationRunning.get()) {
                 int amount = 0;
                 switch (consumerName) {
                     case "Lighting":
                         amount = simulateLighting();
+                        lastLightingConsumption = amount;
                         break;
                     case "Heating":
                         amount = simulateHeating();
+                        lastHeatingConsumption = amount;
                         break;
                     case "H-Bahn":
                         amount = simulateHBahn();
+                        lastHBahnConsumption = amount;
                         break;
                     case "Car Charging Station":
                         amount = simulateCarCharging();
+                        lastCarChargingConsumption = amount;
                         break;
                 }
                 battery.discharge(amount, consumerName);
+                // Removed console output
+
                 try {
-                    Thread.sleep(1000); // Wait before next consumption
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
