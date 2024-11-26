@@ -1,31 +1,41 @@
 package energymanagement;
 
 public class Battery {
-    private int capacity;       
-    private int currentCharge;  
+    private int capacity;
+    private int currentCharge;
 
     public Battery(int capacity) {
         this.capacity = capacity;
-        this.currentCharge = 0; 
+        this.currentCharge = 0;
     }
 
-    // Synchronized method to charge the battery-sadman
+    // Synchronized method to charge the battery
     public synchronized void charge(int amount, String source) {
-        while (currentCharge + amount > capacity) {
-            // Prevent overcharging
+        if (amount <= 0) {
+            // If amount is zero or negative, do nothing
+            return;
+        }
+
+        while (currentCharge >= capacity) {
+            // Battery is full, wait until discharge occurs
             try {
-                System.out.println(source + " waiting to charge. Battery full.");
-                wait(); 
+                // Removed console output
+                // System.out.println(source + " waiting to charge. Battery full.");
+                wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
-        currentCharge += amount;
-        System.out.println(source + " charged " + amount + " units. Current charge: " + currentCharge);
+
+        int availableCapacity = capacity - currentCharge;
+        int actualCharge = Math.min(amount, availableCapacity);
+        currentCharge += actualCharge;
+        // Removed console output
+        // System.out.println(source + " charged " + actualCharge + " units. Current charge: " + currentCharge);
         notifyAll();
     }
-    
- // Synchronized method to discharge the battery
+
+    // Synchronized method to discharge the battery
     public synchronized void discharge(int amount, String consumer) {
         if (amount <= 0) {
             // If amount is zero or negative, do nothing
@@ -50,13 +60,18 @@ public class Battery {
         notifyAll();
     }
 
-   
-
     public synchronized int getCurrentCharge() {
         return currentCharge;
     }
 
-    public int getCapacity() {
+    public synchronized void setCapacity(int capacity) {
+        this.capacity = capacity;
+        // Removed console output
+        // System.out.println("Battery capacity updated to: " + capacity);
+        notifyAll();
+    }
+
+    public synchronized int getCapacity() {
         return capacity;
     }
 }
