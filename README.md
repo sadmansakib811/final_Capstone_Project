@@ -17,7 +17,15 @@ In **HA3**, we've enhanced the application by implementing Battery Class and add
 
 ## Contributors
 
-- Sadman Sakib: In HA3 I have Implemented the multi thread for the energy source like windTurbineThread and solarPanelThread. Simulated multithread charging of the reserved batteries from several energy sources
+- Sadman Sakib: Created Log File making System (LogManager.java)
+Simulation of the Energy Sources and Managing Energy Sources.
+Created Multi threading Simulation of the Energy Sources and Multithreaded Charging system of Battery. (EnergySimulation.java, EnergySource.java (inner class of Energy Simulation.java) , Battery.java, Necessary Main.java methods and objects)
+  Created uploading the initial settings for the smart house.
+ Created UI for Design of the User Interface for Managing Energy Sources (EnergyManagementUI.java).
+Unit Testing (EnergySimulationTest.java, LogManager.java, AllTests.java)
+Added Exception Handling wherever it is needed in all the above work.
+UML and Presentation ppt
+
 - Farhana Binta Shaheed: In HA3 I have Implemented Simulation of multithread of the usage several energy objects from the battery. Control overload of the system.
 - Azad Hossain: Add Tweaks in Main java file for the proper new fetures running.
 
