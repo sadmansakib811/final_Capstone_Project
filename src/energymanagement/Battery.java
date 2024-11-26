@@ -27,18 +27,27 @@ public class Battery {
     
  // Synchronized method to discharge the battery
     public synchronized void discharge(int amount, String consumer) {
-        while (currentCharge - amount < 0) {
-            // Prevent over-discharging
+        if (amount <= 0) {
+            // If amount is zero or negative, do nothing
+            return;
+        }
+
+        while (currentCharge <= 0) {
+            // Battery is empty, wait until charge occurs
             try {
-                System.out.println(consumer + " waiting to discharge. Battery empty.");
-                wait(); // Wait until there's enough charge
+                // Removed console output
+                // System.out.println(consumer + " waiting to discharge. Battery empty.");
+                wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
-        currentCharge -= amount;
-        System.out.println(consumer + " discharged " + amount + " units. Current charge: " + currentCharge);
-        notifyAll(); // Notify other threads that may be waiting
+
+        int actualDischarge = Math.min(amount, currentCharge);
+        currentCharge -= actualDischarge;
+        // Removed console output
+        // System.out.println(consumer + " discharged " + actualDischarge + " units. Current charge: " + currentCharge);
+        notifyAll();
     }
 
    
