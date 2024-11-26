@@ -1,4 +1,4 @@
-# Energy Management Log Simulation
+# Smart House: Simulation of the Energy supply and consumption
 
 This project simulates energy generation and consumption for different energy sources over multiple days. It generates log files with random values representing energy produced by sources like wind turbines and solar panels, and energy consumed by systems such as lighting, heating, and the H-Bahn. The log files can be searched using both simple string search and regular expression search.
 
