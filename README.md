@@ -9,7 +9,7 @@ In **HA3**, we've enhanced the application by implementing Battery Class and add
 1. **Sadman Sakib:** (Matriculation Number: 7213446),
 2. **Farhana Binta Shaheed:** (Matriculation Number: 7216429),
 3. **Md Azad Hossain:** (Matriculation Number: 7213230),
-4. **Md Istiak Javed:** (Matriculation Number: 7221689),
+
 
 # To see a video demonstration of the project, click here to watch the video.
 
