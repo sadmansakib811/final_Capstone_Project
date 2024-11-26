@@ -12,7 +12,8 @@ import org.junit.platform.suite.api.SelectClasses;
     FileReaderUtilTest.class,
     LogManagerTest.class,
     SimpleStringSearchTest.class,
-    RegexSearchTest.class
+    RegexSearchTest.class,
+    BatteryTest.class
 })
 public class AllTests {
     // This class remains empty; it's used only as a holder for the above annotations
