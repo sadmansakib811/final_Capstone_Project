@@ -13,11 +13,11 @@ In **HA3**, we've enhanced the application by implementing Battery Class and add
 
 # To see a video demonstration of the project, click here to watch the video.
 
--  Ha3 Concurrency explanation Team Video : https://drive.google.com/file/d/1kFOW6cGZgwPrGMNqHPOfI_UL-QKWTa6R/view?usp=sharing
+-  **Ha3 Concurrency explanation Team Video :** https://drive.google.com/file/d/1kFOW6cGZgwPrGMNqHPOfI_UL-QKWTa6R/view?usp=sharing
 
 ## Contributors
 
-- Sadman Sakib: Created Log File making System (LogManager.java)
+- **Sadman Sakib:** Created Log File making System (LogManager.java)
 Simulation of the Energy Sources and Managing Energy Sources.
 Created Multi threading Simulation of the Energy Sources and Multithreaded Charging system of Battery. (EnergySimulation.java, EnergySource.java (inner class of Energy Simulation.java) , Battery.java, Necessary Main.java methods and objects)
   Created uploading the initial settings for the smart house.
@@ -26,8 +26,17 @@ Unit Testing (EnergySimulationTest.java, LogManager.java, AllTests.java)
 Added Exception Handling wherever it is needed in all the above work.
 UML and Presentation ppt
 
-- Farhana Binta Shaheed: In HA3 I have Implemented Simulation of multithread of the usage several energy objects from the battery. Control overload of the system.
-- Azad Hossain: Add Tweaks in Main java file for the proper new fetures running.
+- **Farhana Binta Shaheed:** Created Log File reading System (FileReaderUtil.java)
+Simulation of the Smart Objects and Management system for the house consumption,
+Created Multi threading Simulation of the Energy Consuming by Smart Objects and Multithreaded discharging system of Battery. (EnergySimulation.java, EnergyConsumer.java(inner class of Energy Simulation.java), Battery.java, Necessary Main.java methods and objects)
+Unit Testing (FileReaderUtil.java)
+Added Exception Handling wherever it is needed in all the above work.
+UML, Component Diagram
+
+- **Md Azad Hossain:** Created Log Search system(LogSearch.java)
+Designed UI for the User Interface for the Managing Smart Objects and createRealTimeMonitorPanel.
+Unit Testing (RegexSearchTest.java)
+ Added Exception Handling wherever it is needed in all the above work.
 
 ## Project Structure
 
