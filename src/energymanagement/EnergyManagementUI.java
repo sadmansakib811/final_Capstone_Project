@@ -68,16 +68,36 @@ public class EnergyManagementUI extends JFrame {
         return panel;
     }
 
+    private JPanel createEnergySourcesPanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
+        panel.add(new JLabel("Battery Capacity: "));
+        JTextField capacityField = new JTextField(String.valueOf(battery.getCapacity()), 5);
+        JButton setCapacityButton = new JButton("Set Capacity");
+        setCapacityButton.addActionListener(e -> {
+            try {
+                int newCapacity = Integer.parseInt(capacityField.getText());
+                battery.setCapacity(newCapacity); // Update battery capacity without creating a new object
+                logManager.logEvent("Battery capacity set to: " + newCapacity);
+                updateBatteryStatus();
+                // Generate new log files based on updated settings
+                logManager.generateLogFiles();
+            } catch (NumberFormatException ex) {
+                logTextArea.append("Invalid battery capacity value.\n");
+            } catch (IOException ioEx) {
+                logTextArea.append("Error generating log files.\n");
+            }
+        });
+        panel.add(capacityField);
+        panel.add(setCapacityButton);
 
+        panel.add(new JLabel("Energy Sources - Adjust Generation Rates"));
+        panel.add(createEnergySourceControl("Solar Panel"));
+        panel.add(createEnergySourceControl("Wind Turbine"));
+        return panel;
+    }
 
-
-
-
-
-
-    
-//farhana and Azad
     private JPanel createSmartObjectControl(String name) {
         JPanel panel = new JPanel();
         JLabel label = new JLabel(name);
@@ -106,12 +126,33 @@ public class EnergyManagementUI extends JFrame {
         return panel;
     }
 
+    private JPanel createEnergySourceControl(String name) {
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel(name);
+        JTextField generationField = new JTextField("100", 5);
+        JButton setButton = new JButton("Set Generation Rate");
 
+        setButton.addActionListener(e -> {
+            try {
+                int generationRate = Integer.parseInt(generationField.getText());
+                setGenerationRate(name, generationRate);
+                logManager.logEvent(name + " generation rate set to " + generationRate);
+                updateLogDisplay();
+                // Generate new log files based on updated settings
+                logManager.generateLogFiles();
+            } catch (NumberFormatException ex) {
+                logTextArea.append("Invalid generation rate for " + name + ".\n");
+            } catch (IOException ioEx) {
+                logTextArea.append("Error generating log files.\n");
+            }
+        });
 
-
-
-    
-
+        panel.add(label);
+        panel.add(new JLabel("Generation Rate: "));
+        panel.add(generationField);
+        panel.add(setButton);
+        return panel;
+    }
 
     private JPanel createRealTimeMonitorPanel() {
         JPanel panel = new JPanel(new BorderLayout());
@@ -177,5 +218,15 @@ public class EnergyManagementUI extends JFrame {
             simulator.setWindTurbineGenerationRate(rate);
         }
     }
+//sadman
+    private void updateBatteryStatus() {
+        if (batteryLabel == null) {
+            batteryLabel = new JLabel();
+        }
+        batteryLabel.setText("Battery Charge: " + battery.getCurrentCharge() + " / " + battery.getCapacity());
+    }
 
+    private void updateLogDisplay() {
+        logTextArea.setText(String.join("\n", logManager.getLogs()));
+    }
 }
