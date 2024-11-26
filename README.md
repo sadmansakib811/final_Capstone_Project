@@ -1,3 +1,5 @@
+![ezgif-6-9ee1fabe51](https://github.com/user-attachments/assets/d317d6cf-e558-4c1b-a0f0-01ce75442b14)
+
 # Smart House: Simulation of the Energy supply and consumption
 
 This project simulates energy generation and consumption for different energy sources over multiple days. It generates log files with random values representing energy produced by sources like wind turbines and solar panels, and energy consumed by systems such as lighting, heating, and the H-Bahn. The log files can be searched using both simple string search and regular expression search.
@@ -39,7 +41,7 @@ Unit Testing (RegexSearchTest.java)
  Added Exception Handling wherever it is needed in all the above work.
 
 
-![ezgif-6-9ee1fabe51](https://github.com/user-attachments/assets/d317d6cf-e558-4c1b-a0f0-01ce75442b14)
+
 
 ## Project Structure
 
