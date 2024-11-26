@@ -28,13 +28,13 @@ public class EnergyManagementUI extends JFrame {
         JPanel smartObjectsPanel = createSmartObjectsPanel();
         JPanel energySourcesPanel = createEnergySourcesPanel();
         JPanel realTimeMonitorPanel = createRealTimeMonitorPanel();
-        // Farhana smart object control tab
+         //Farhana smart object control tab
         tabbedPane.addTab("Smart Objects", smartObjectsPanel);
 
-        // SADMAN -energy source tab
+        //SADMAN -energy source tab
         tabbedPane.addTab("Energy Sources", energySourcesPanel);
 
-        // Azad tab
+        //Azad tab
         tabbedPane.addTab("Real-time Monitor", realTimeMonitorPanel);
 
         add(tabbedPane, BorderLayout.CENTER);
@@ -57,8 +57,8 @@ public class EnergyManagementUI extends JFrame {
             }
         });
     }
-
-    // Azad
+    
+//farhana
     private JPanel createSmartObjectsPanel() {
         JPanel panel = new JPanel(new GridLayout(4, 1, 10, 10));
         panel.add(createSmartObjectControl("Lighting"));
@@ -67,6 +67,51 @@ public class EnergyManagementUI extends JFrame {
         panel.add(createSmartObjectControl("Car Charging Station"));
         return panel;
     }
+
+
+
+
+
+
+
+
+
+    
+//farhana and Azad
+    private JPanel createSmartObjectControl(String name) {
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel(name);
+        JButton applyButton = new JButton("Apply");
+        JTextField consumptionField = new JTextField("100", 5);
+
+        applyButton.addActionListener(e -> {
+            try {
+                int consumptionLimit = Integer.parseInt(consumptionField.getText());
+                setConsumptionLimit(name, consumptionLimit);
+                logManager.logEvent(name + " consumption set to " + consumptionLimit);
+                updateLogDisplay();
+                // Generate new log files based on updated settings
+                logManager.generateLogFiles();
+            } catch (NumberFormatException ex) {
+                logTextArea.append("Invalid consumption value for " + name + ".\n");
+            } catch (IOException ioEx) {
+                logTextArea.append("Error generating log files.\n");
+            }
+        });
+
+        panel.add(label);
+        panel.add(new JLabel("Max Consumption: "));
+        panel.add(consumptionField);
+        panel.add(applyButton);
+        return panel;
+    }
+
+
+
+
+
+    
+
 
     private JPanel createRealTimeMonitorPanel() {
         JPanel panel = new JPanel(new BorderLayout());
@@ -82,21 +127,22 @@ public class EnergyManagementUI extends JFrame {
         Timer timer = new Timer(1000, e -> {
             updateBatteryStatus();
             String logEntry = String.format(
-                    "Battery Charge: %d\n" +
-                            "Wind Turbine Generation: %d units\n" +
-                            "Solar Panel Generation: %d units\n" +
-                            "Lighting Consumption: %d units\n" +
-                            "Heating Consumption: %d units\n" +
-                            "H-Bahn Consumption: %d units\n" +
-                            "Car Charging Consumption: %d units\n" +
-                            "--------------------------------------------------\n",
-                    battery.getCurrentCharge(),
-                    simulator.getLastWindTurbineGeneration(),
-                    simulator.getLastSolarPanelGeneration(),
-                    simulator.getLastLightingConsumption(),
-                    simulator.getLastHeatingConsumption(),
-                    simulator.getLastHBahnConsumption(),
-                    simulator.getLastCarChargingConsumption());
+                "Battery Charge: %d\n" +
+                "Wind Turbine Generation: %d units\n" +
+                "Solar Panel Generation: %d units\n" +
+                "Lighting Consumption: %d units\n" +
+                "Heating Consumption: %d units\n" +
+                "H-Bahn Consumption: %d units\n" +
+                "Car Charging Consumption: %d units\n" +
+                "--------------------------------------------------\n",
+                battery.getCurrentCharge(),
+                simulator.getLastWindTurbineGeneration(),
+                simulator.getLastSolarPanelGeneration(),
+                simulator.getLastLightingConsumption(),
+                simulator.getLastHeatingConsumption(),
+                simulator.getLastHBahnConsumption(),
+                simulator.getLastCarChargingConsumption()
+            );
             realTimeLogTextArea.append(logEntry);
             if (realTimeLogTextArea.getLineCount() > 100) {
                 realTimeLogTextArea.setText("");
@@ -132,14 +178,4 @@ public class EnergyManagementUI extends JFrame {
         }
     }
 
-    private void updateBatteryStatus() {
-        if (batteryLabel == null) {
-            batteryLabel = new JLabel();
-        }
-        batteryLabel.setText("Battery Charge: " + battery.getCurrentCharge() + " / " + battery.getCapacity());
-    }
-
-    private void updateLogDisplay() {
-        logTextArea.setText(String.join("\n", logManager.getLogs()));
-    }
 }
