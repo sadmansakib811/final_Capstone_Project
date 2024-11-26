@@ -38,6 +38,9 @@ Designed UI for the User Interface for the Managing Smart Objects and createReal
 Unit Testing (RegexSearchTest.java)
  Added Exception Handling wherever it is needed in all the above work.
 
+
+![ezgif-6-9ee1fabe51](https://github.com/user-attachments/assets/d317d6cf-e558-4c1b-a0f0-01ce75442b14)
+
 ## Project Structure
 
 - **`Battery.java`**:
