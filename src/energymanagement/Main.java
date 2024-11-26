@@ -1,43 +1,58 @@
 package energymanagement;
-
+import java.util.Properties;
 import java.io.File;
-import java.util.Scanner;
 import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.SwingUtilities;
+import java.io.FileInputStream;
 
 public class Main {
     private static final String FILENAME_PREFIX = "FH_DORTMUND_energy_management_date_";
+    private static final String PROPERTIES_FILE_PATH = "initial_settings.properties";
 
     public static void main(String[] args) {
-        LogManager logManager = new LogManager();
+        EnergySimulator energySimulator = new EnergySimulator(); // Create EnergySimulator instance
+        LogManager logManager = new LogManager(energySimulator); // Pass energySimulator to LogManager
         LogSearch logSearch = new LogSearch();
-        FileReaderUtil fileReaderUtil = new FileReaderUtil();
-        ExceptionHandler exceptionHandler = new ExceptionHandler();
-        EnergySimulator energySimulator = new EnergySimulator();
-        Battery battery = new Battery(5000);
+        FileReaderUtil fileReaderUtil = new FileReaderUtil();  // For metadata
+        ExceptionHandler exceptionHandler = new ExceptionHandler(); // ExceptionHandler instance
         Scanner scanner = new Scanner(System.in);
+      
+        //**********************battery inital setting from properties file******************************
+        int batteryCapacity = readBatteryCapacity();
+        Battery battery = new Battery(batteryCapacity);
+        //**********************end******************************
 
+
+
+        // Start the multithreaded simulation
+        energySimulator.startSimulation(battery);
+
+        // Start the UI
+        SwingUtilities.invokeLater(() -> {
+            EnergyManagementUI ui = new EnergyManagementUI(battery, logManager, energySimulator);
+            ui.setVisible(true); // Make the UI visible
+        });
+
+        // Proceed with console functionalities
         try {
-
-            energySimulator.startSimulation(battery);
-            Thread.sleep(15000);
-
-            energySimulator.stopSimulation();
-
-            System.out.println("\nSimulation complete. Current battery charge: " + battery.getCurrentCharge());
-
+            // Generate log files
             System.out.println("Generating 5 days of log files...");
             logManager.generateLogFiles();
 
+            // Handle exceptions
             exceptionHandler.handleMultipleExceptions();
             exceptionHandler.manageResource();
             exceptionHandler.chainException();
 
+            // Show available log files
             File[] logFiles = showAvailableLogFiles();
             if (logFiles == null || logFiles.length == 0) {
                 System.out.println("No log files found.");
                 return;
             }
 
+            // Select a log file
             File selectedFile = selectLogFileByCriteria(scanner, logFiles);
 
             if (selectedFile != null) {
@@ -54,6 +69,7 @@ public class Main {
                 logSearch.performSearch(selectedFile, scanner);
             }
 
+            // Options to delete or move log files
             System.out.println("\nDo you want to delete or move a log file?");
             System.out.println("1. Delete a log file");
             System.out.println("2. Move a log file");
@@ -81,12 +97,36 @@ public class Main {
         } catch (IOException e) {
             System.out.println("An error occurred: " + e.getMessage());
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
         } finally {
             scanner.close();
         }
     }
+
+
+    private static int readBatteryCapacity() {
+        Properties properties = new Properties();
+
+        int batteryCapacity = 6000; // Default value in case the property is not found
+
+        try (FileInputStream input = new FileInputStream(PROPERTIES_FILE_PATH)) {
+            properties.load(input);
+            String capacityStr = properties.getProperty("batteryCapacity");
+            try {
+                batteryCapacity = Integer.parseInt(capacityStr);
+            } catch(Exception e) {
+                System.out.println("batteryCapacity property not found. Using default value: " + batteryCapacity);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading properties file: " + e.getMessage());
+            System.out.println("Using default battery capacity: " + batteryCapacity);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid battery capacity value in properties file. Using default value: " + batteryCapacity);
+        }
+        return batteryCapacity;
+    }
+
+    
+    
 
     private static File[] showAvailableLogFiles() {
         File dir = new File(".");
@@ -184,4 +224,7 @@ public class Main {
             System.out.println("Log file not found: " + fileName);
         }
     }
+
+  
+
 }
