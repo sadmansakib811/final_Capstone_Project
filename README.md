@@ -13,7 +13,7 @@ In **HA3**, we've enhanced the application by implementing Battery Class and add
 
 # To see a video demonstration of the project, click here to watch the video.
 
--  Ha3 Concurrency explanation Team Video : https://youtu.be/nu09Xx2_7GM
+-  Ha3 Concurrency explanation Team Video : https://drive.google.com/file/d/1kFOW6cGZgwPrGMNqHPOfI_UL-QKWTa6R/view?usp=sharing
 
 ## Contributors
 
