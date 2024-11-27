@@ -15,8 +15,8 @@ In **HA3**, we've enhanced the application by implementing Battery Class and add
 
 # To see a video demonstration of the project, click here to watch the video.
 - **MVP Video:** https://www.youtube.com/watch?v=Sd4Y-zl2-a8
--  **Ha3 Concurrency explanation Team Video :** https://drive.google.com/file/d/1kFOW6cGZgwPrGMNqHPOfI_UL-QKWTa6R/view?usp=sharing
-
+-  **Capstone Short explanation Team Video :** https://drive.google.com/file/d/1kFOW6cGZgwPrGMNqHPOfI_UL-QKWTa6R/view?usp=sharing
+- **A to Z all the Home Assessment Summery Capstone Project Screencast video:** https://www.youtube.com/watch?v=zRCOq0mtPn4
 ## Contributors
 
 - **Sadman Sakib:** Created Log File making System (LogManager.java)
